@@ -3,6 +3,12 @@
  <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+ function openPage(pageURL)
+ {
+ window.location.href = pageURL;
+ }
+</script>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -22,6 +28,9 @@ Password: <form:input path="password" id="password"/><form:errors path="password
 ${error}
 <br>
 <input type="submit" value="login"/>
+</form:form>
+<form:form modelAttribute="user" action="registerform" method="post">
+<input type="submit" value="register"/>
 </form:form>
 </body>
 </html>

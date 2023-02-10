@@ -32,6 +32,11 @@ class SeleniumTestPass {
 		submitlogin.click();
 		Thread.sleep(300);
 
+		WebElement newGame = driver.findElement(By.cssSelector("input[id='new game']"));
+
+		newGame.click();
+		Thread.sleep(300);
+
 		WebElement difficulty = driver.findElement(By.cssSelector("input[id='hard']"));
 
 		difficulty.click();

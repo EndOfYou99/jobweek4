@@ -4,8 +4,8 @@
     <%@page import="java.util.ArrayList" %>
     <%@page import="java.util.HashMap" %>
         <%@page import="java.util.Set" %>
-    <%@ page import="hangman.business.service.GameServiceImpl" %>
-     <%@ page import="hangman.business.repo.Game" %>
+    <%@ page import="hangman.business.repo.game.GameServiceImpl" %>
+     <%@ page import="hangman.business.repo.game.Game" %>
 <%@page session="true" %>
 <!DOCTYPE html>
 <html>
@@ -67,23 +67,9 @@ window.location =  "/HangmanGame/Game/"+id+"?letter="+element.value;
             <input type="button" id="z" name="letter" value="z" onclick="createUrl(this)">
             </form>
             <%=myGame.getUsedLetters() %> 
-            <%System.out.println(myGame.getUsedLetters()); %>
+            <%System.out.println(myGame.getUsedLetters());} %>
    
-            <%}else if (myGame.getResult().equals("W")){ %>
-            You win!
-            <%}else if (myGame.getResult().equals("L")){ %>
-            You lose!
-            <br>
-            The word was: <%=myGame.getWord()%>
-            <div align="left">
-_____ <br>
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|   <br>
-| &nbsp;&nbsp;&nbsp;@   <br>
-|   &nbsp;&nbsp;&nbsp;/|\<br>
-|   &nbsp;&nbsp;&nbsp;/&nbsp;\<br>   
-|______<br> 
-            </div>
-            <%} %>
+            
  </div>
 
 </body>
