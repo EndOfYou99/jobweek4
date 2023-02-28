@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import hangman.business.repo.statistics.Statistics;
 import hangman.business.repo.user.User;
 import hangman.business.repo.word.Word;
@@ -18,12 +20,15 @@ public class Game {
 	@Id
 	String id;
 
+	@JsonIgnore
 	@ManyToOne
 	Word words;
 
+	@JsonIgnore
 	@ManyToOne
 	User user;
 
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	Statistics statistics;
 

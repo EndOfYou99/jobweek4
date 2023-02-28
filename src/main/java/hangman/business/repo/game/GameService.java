@@ -1,11 +1,14 @@
 package hangman.business.repo.game;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import hangman.business.repo.user.User;
 
 public interface GameService {
+
+	public List<Game> ongoing();
 
 	public void startNewGame(UUID id, String difficulty, Game Game, User user);
 

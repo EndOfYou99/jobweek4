@@ -1,6 +1,7 @@
 package hangman.business.repo.game;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -295,6 +296,11 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public int getMonthlyHardGames(User user, LocalDate date) {
 		return Math.toIntExact(gameRepository.getMonthlyHardGames(user, date));
+	}
+
+	@Override
+	public List<Game> ongoing() {
+		return gameRepository.ongoing();
 	}
 
 }

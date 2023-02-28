@@ -1,5 +1,4 @@
-    
-    create table achievements (
+ create table achievements (
        id integer not null,
         achievement varchar(255),
         primary key (id)

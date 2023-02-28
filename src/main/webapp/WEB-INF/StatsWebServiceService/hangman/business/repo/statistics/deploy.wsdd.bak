@@ -1,0 +1,51 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from StatsWebServiceService WSDL service -->
+
+  <service name="StatsWebService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://statistics.repo.business.hangman"/>
+      <parameter name="wsdlServiceElement" value="StatsWebServiceService"/>
+      <parameter name="schemaQualified" value="http://statistics.repo.business.hangman"/>
+      <parameter name="wsdlServicePort" value="StatsWebService"/>
+      <parameter name="className" value="hangman.business.repo.statistics.StatsWebServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="StatsWebService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getAllStatistics" qname="operNS:getAllStatistics" xmlns:operNS="http://statistics.repo.business.hangman" returnQName="retNS:getAllStatisticsReturn" xmlns:retNS="http://statistics.repo.business.hangman" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://statistics.repo.business.hangman" returnItemQName="tns:item" xmlns:tns="http://statistics.repo.business.hangman" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getAllStatistics"/>
+
+      <typeMapping
+        xmlns:ns="http://statistics.repo.business.hangman"
+        qname="ns:>getAllStatistics"
+        type="java:hangman.business.repo.statistics.GetAllStatistics"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://statistics.repo.business.hangman"
+        qname="ns:>getAllStatisticsResponse"
+        type="java:hangman.business.repo.statistics.GetAllStatisticsResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://statistics.repo.business.hangman"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://statistics.repo.business.hangman" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://statistics.repo.business.hangman" xmlns:intf="http://statistics.repo.business.hangman" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://statistics.repo.business.hangman" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getAllStatistics">
+    <complexType/>
+   </element>
+   <element name="getAllStatisticsResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllStatisticsReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAllStatisticsRequest">
+
+      <wsdl:part element="impl:getAllStatistics" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllStatisticsResponse">
+
+      <wsdl:part element="impl:getAllStatisticsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="StatsWebService">
+
+      <wsdl:operation name="getAllStatistics">
+
+         <wsdl:input message="impl:getAllStatisticsRequest" name="getAllStatisticsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllStatisticsResponse" name="getAllStatisticsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="StatsWebServiceSoapBinding" type="impl:StatsWebService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAllStatistics">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllStatisticsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllStatisticsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="StatsWebServiceService">
+
+      <wsdl:port binding="impl:StatsWebServiceSoapBinding" name="StatsWebService">
+
+         <wsdlsoap:address location="http://localhost:8080/HangmanGame/services/StatsWebService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

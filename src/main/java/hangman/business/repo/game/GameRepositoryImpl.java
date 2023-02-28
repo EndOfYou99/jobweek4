@@ -141,6 +141,19 @@ public class GameRepositoryImpl implements GameRepository {
 		return result;
 	}
 
+	public List<Game> ongoing() {
+
+		CriteriaBuilder criteriaBuilder = e.getCriteriaBuilder();
+		CriteriaQuery<Game> criteriaQuery = criteriaBuilder.createQuery(Game.class);
+		Root<Game> root = criteriaQuery.from(Game.class);
+		Join<Game, Statistics> statsJoin = root.join("statistics");
+		criteriaQuery.where(criteriaBuilder.equal(statsJoin.get("result"), "N"));
+
+		TypedQuery<Game> query = e.createQuery(criteriaQuery);
+		List<Game> result = query.getResultList();
+		return result;
+	}
+
 	public Long winnedGames(Game game) {
 		User username = game.getUser();
 
@@ -182,7 +195,8 @@ public class GameRepositoryImpl implements GameRepository {
 		Join<Game, Statistics> statsJoin = root.join("statistics");
 		criteriaQuery.select(criteriaBuilder.count(root));
 		criteriaQuery.where(criteriaBuilder.equal(root.get("user"), user),
-				criteriaBuilder.and(criteriaBuilder.equal(statsJoin.get("diff"), 27)));
+				criteriaBuilder.and(criteriaBuilder.equal(statsJoin.get("diff"), 27)),
+				criteriaBuilder.and(criteriaBuilder.notEqual(statsJoin.get("result"), "N")));
 
 		TypedQuery<Long> query = e.createQuery(criteriaQuery);
 		Long result = query.getSingleResult();
@@ -214,7 +228,8 @@ public class GameRepositoryImpl implements GameRepository {
 		Join<Game, Statistics> statsJoin = root.join("statistics");
 		criteriaQuery.select(criteriaBuilder.count(root));
 		criteriaQuery.where(criteriaBuilder.equal(root.get("user"), user),
-				criteriaBuilder.and(criteriaBuilder.equal(statsJoin.get("diff"), 14)));
+				criteriaBuilder.and(criteriaBuilder.equal(statsJoin.get("diff"), 14)),
+				criteriaBuilder.and(criteriaBuilder.notEqual(statsJoin.get("result"), "N")));
 
 		TypedQuery<Long> query = e.createQuery(criteriaQuery);
 		Long result = query.getSingleResult();
@@ -246,7 +261,8 @@ public class GameRepositoryImpl implements GameRepository {
 		Join<Game, Statistics> statsJoin = root.join("statistics");
 		criteriaQuery.select(criteriaBuilder.count(root));
 		criteriaQuery.where(criteriaBuilder.equal(root.get("user"), user),
-				criteriaBuilder.and(criteriaBuilder.equal(statsJoin.get("diff"), 1)));
+				criteriaBuilder.and(criteriaBuilder.equal(statsJoin.get("diff"), 1)),
+				criteriaBuilder.and(criteriaBuilder.notEqual(statsJoin.get("result"), "N")));
 
 		TypedQuery<Long> query = e.createQuery(criteriaQuery);
 		Long result = query.getSingleResult();
